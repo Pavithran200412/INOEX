@@ -1,100 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { TextField, Button, MenuItem, Grid, Paper } from '@mui/material';
+import React, {useState, useEffect} from 'react';
+import { TextField, Button, MenuItem } from '@mui/material';
 
-const categories = ["Food", "Transport", "Rent", "Shopping", "Other"];
+const categories = ['Food','Transport','Rent','Shopping','Other'];
 
-export default function ExpenseForm({ onSave, expenseToEdit, onCancel }) {
-  // local state for the form fields
-  const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+export default function ExpenseForm({onSave, edit}) {
+  const [category, setCategory] = useState(edit?.category || '');
+  const [amount, setAmount] = useState(edit?.amount || '');
+  const [date, setDate] = useState(edit?.date || '');
 
-  // when expenseToEdit changes, populate the form
-  useEffect(() => {
-    if (expenseToEdit) {
-      setCategory(expenseToEdit.category || '');
-      setAmount(expenseToEdit.amount != null ? expenseToEdit.amount : '');
-      setDate(expenseToEdit.date || '');
-    } else {
-      // clear form when not editing
-      setCategory('');
-      setAmount('');
-      setDate('');
-    }
-  }, [expenseToEdit]);
+  useEffect(()=> {
+    setCategory(edit?.category || '');
+    setAmount(edit?.amount || '');
+    setDate(edit?.date || '');
+  }, [edit]);
 
-  const handleSubmit = (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    // basic validation
-    if (!category || !amount || !date) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    const payload = {
-      category,
-      amount: parseFloat(amount),
-      date
-    };
-
-    onSave(payload);
-
-    // clear form for new entry
-    setCategory('');
-    setAmount('');
-    setDate('');
-  };
+    if(!category || !amount || !date) return;
+    onSave({ category, amount: parseFloat(amount), date });
+    setCategory(''); setAmount(''); setDate('');
+  }
 
   return (
-    <Paper sx={{ p: 2, mb: 2 }}>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={3}>
-            <TextField
-              select
-              label="Category"
-              fullWidth
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              {categories.map(c => <MenuItem key={c} value={c}>{c}</MenuItem>)}
-            </TextField>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <TextField
-              label="Amount"
-              type="number"
-              fullWidth
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <TextField
-              label="Date"
-              type="date"
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={3} sx={{ display: 'flex', gap: 1 }}>
-            <Button type="submit" variant="contained" color="primary">
-              {expenseToEdit ? 'Update' : 'Add'}
-            </Button>
-
-            {expenseToEdit ? (
-              <Button variant="outlined" color="secondary" onClick={() => onCancel()}>
-                Cancel
-              </Button>
-            ) : null}
-          </Grid>
-        </Grid>
-      </form>
-    </Paper>
+    <form onSubmit={submit} style={{display:'flex', gap:12, alignItems:'center', flexWrap:'wrap'}}>
+      <TextField select label="Category" value={category} onChange={e=>setCategory(e.target.value)} required>
+        {categories.map(c=> <MenuItem key={c} value={c}>{c}</MenuItem>)}
+      </TextField>
+      <TextField label="Amount" type="number" value={amount} onChange={e=>setAmount(e.target.value)} required />
+      <TextField label="Date" type="date" value={date} onChange={e=>setDate(e.target.value)} InputLabelProps={{ shrink: true }} required />
+      <Button variant="contained" type="submit">Save</Button>
+    </form>
   );
 }

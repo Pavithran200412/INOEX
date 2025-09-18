@@ -1,7 +1,0 @@
-com\example\demo\model\Salary.class
-com\example\demo\controller\ExpenseController.class
-com\example\demo\DemoApplication.class
-com\example\demo\repository\ExpenseRepository.class
-com\example\demo\controller\SalaryController.class
-com\example\demo\repository\SalaryRepository.class
-com\example\demo\model\Expense.class
