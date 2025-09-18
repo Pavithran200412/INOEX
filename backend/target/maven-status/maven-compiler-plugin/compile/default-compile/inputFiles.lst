@@ -1,4 +1,7 @@
-C:\Users\Pavit\Documents\INOEX\backend\src\main\java\com\example\expensetracker\ExpenseRepository.java
-C:\Users\Pavit\Documents\INOEX\backend\src\main\java\com\example\expensetracker\ExpenseController.java
-C:\Users\Pavit\Documents\INOEX\backend\src\main\java\com\example\expensetracker\ExpenseTrackerApplication.java
-C:\Users\Pavit\Documents\INOEX\backend\src\main\java\com\example\expensetracker\Expense.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\model\Salary.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\repository\ExpenseRepository.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\controller\ExpenseController.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\controller\SalaryController.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\repository\SalaryRepository.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\model\Expense.java
+C:\Users\Pavit\Documents\expense-tracker\backend\src\main\java\com\example\demo\DemoApplication.java
