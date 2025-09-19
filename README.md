@@ -19,4 +19,4 @@ How to run:
      npm install react-scripts
    - npm start
 
-H2 console: http://localhost:8080/h2-console (JDBC URL: jdbc:h2:mem:testdb)
+H2 console: http://localhost:8080/h2-console --- >JDBC URL: jdbc:h2:mem:testdb
